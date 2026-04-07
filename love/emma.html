@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Happy Birthday Emma 💖</title>
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Confetti library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(145deg, #f9d6e0 0%, #e6c8e0 40%, #d9b8d9 70%, #c5a3cf 100%);
+      min-height: 100vh;
+      position: relative;
+      color: #4a2040;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+    .floating-hearts {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .floating-hearts i {
+      position: absolute;
+      color: rgba(255, 120, 160, 0.25);
+      font-size: 1.8rem;
+      animation: floatHeart 12s infinite ease-in-out;
+      text-shadow: 0 0 15px #ff99bb, 0 0 30px #ffb6c1;
+      opacity: 0.5;
+    }
+    @keyframes floatHeart {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0.1; }
+      50% { opacity: 0.5; transform: translateY(40vh) rotate(20deg); }
+      100% { transform: translateY(-20vh) rotate(-10deg); opacity: 0; }
+    }
+    .wrapper {
+      position: relative;
+      z-index: 5;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 25px;
+    }
+    h1, h2, h3, .cursive { font-family: 'Dancing Script', cursive; font-weight: 700; }
+    .great-vibes { font-family: 'Great Vibes', cursive; }
+    .hero {
+      text-align: center;
+      padding: 50px 20px 60px;
+      border-radius: 60px 60px 30px 30px;
+      background: rgba(255, 240, 245, 0.25);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: 0 20px 40px rgba(210, 100, 140, 0.2);
+      margin-bottom: 40px;
+      border: 2px solid rgba(255, 220, 240, 0.6);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero h1 {
+      font-size: clamp(2.8rem, 12vw, 5.5rem);
+      color: #a52a5e;
+      text-shadow: 4px 4px 0 #ffe4f2, 0 0 30px #ffb3c6;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      animation: glowText 2.5s infinite alternate;
+    }
+    @keyframes glowText {
+      from { text-shadow: 4px 4px 0 #ffe0f0, 0 0 20px #ff99bb; }
+      to { text-shadow: 6px 6px 0 #ffd9e8, 0 0 40px #ffc0cb, 0 0 60px #fbb6ce; }
+    }
+    .hero .sub { font-size: 1.6rem; font-family: 'Dancing Script', cursive; color: #752a50; margin-top: 10px; }
+    .heart-btn-wrapper { display: flex; justify-content: center; margin: 20px 0 10px; }
+    .heart-shaped {
+      position: relative;
+      width: 110px; height: 100px;
+      background: #ff85a2;
+      cursor: pointer;
+      border: none;
+      transform: rotate(-45deg);
+      box-shadow: 0 8px 18px rgba(200, 50, 100, 0.3);
+      transition: all 0.25s ease;
+      border: 2px solid #fff5fa;
+    }
+    .heart-shaped::before,
+    .heart-shaped::after {
+      content: "";
+      position: absolute;
+      width: 110px; height: 100px;
+      background: #ff85a2;
+      border-radius: 50%;
+      border: 2px solid #fff5fa;
+      box-shadow: inset -2px -2px 8px rgba(120, 30, 60, 0.1);
+    }
+    .heart-shaped::before { top: -50px; left: 0; }
+    .heart-shaped::after { top: 0; left: 50px; }
+    .heart-shaped:hover { background: #ff6b8b; transform: rotate(-45deg) scale(1.02); box-shadow: 0 0 25px #ffb6c1; }
+    .heart-shaped:hover::before,
+    .heart-shaped:hover::after { background: #ff6b8b; }
+    .heart-shaped .btn-text {
+      position: absolute;
+      transform: rotate(45deg);
+      top: 28px; left: 8px;
+      width: 90px;
+      text-align: center;
+      color: #4a1f33;
+      font-weight: bold;
+      font-size: 1.1rem;
+      font-family: 'Dancing Script', cursive;
+      text-shadow: 1px 1px 0 #ffeef4;
+      z-index: 10;
+      pointer-events: none;
+    }
+    .heart-icon-btn {
+      background: #ffb6d1;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 60px;
+      font-size: 1.1rem;
+      font-family: 'Dancing Script', cursive;
+      font-weight: bold;
+      color: #631f42;
+      box-shadow: 0 5px 0 #b34e6b, 0 8px 18px #d991aa;
+      cursor: pointer;
+      transition: 0.15s;
+      border: 2px solid #ffe8f0;
+      margin: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    .heart-icon-btn i { color: #d42f6b; font-size: 1.3rem; }
+    .heart-icon-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 0 #b34e6b, 0 12px 20px #d991aa; background: #ffc1d6; }
+    .gallery-section { margin: 60px 0; }
+    .gallery-title { font-size: 3.5rem; text-align: center; margin-bottom: 30px; color: #822f5e; text-shadow: 3px 3px 0 #fbc1d9; }
+    .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; justify-content: center; }
+    .photo-card {
+      background: #fff0f7;
+      padding: 15px 15px 20px;
+      border-radius: 30px 30px 30px 10px;
+      box-shadow: 10px 12px 0 #b3849e, 0 20px 30px rgba(150, 60, 90, 0.2);
+      transform: rotate(0.5deg);
+      transition: all 0.3s;
+      border: 3px solid white;
+      backdrop-filter: blur(4px);
+    }
+    .photo-card:nth-child(even) { transform: rotate(-1deg); border-radius: 30px 10px 30px 30px; }
+    .photo-card:hover { transform: scale(1.02) rotate(0deg); box-shadow: 12px 14px 0 #a06b85, 0 25px 35px #d98eb0; }
+    .photo-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 20px 20px 20px 5px; border: 4px solid #ffe2f0; box-shadow: inset 0 0 10px #fbb6d2; display: block; }
+    .photo-card .caption { font-family: 'Dancing Script', cursive; text-align: center; margin-top: 12px; font-size: 1.5rem; color: #78184e; font-weight: bold; }
+    .message-section {
+      background: rgba(255, 235, 245, 0.6);
+      backdrop-filter: blur(6px);
+      padding: 40px 30px;
+      border-radius: 80px 20px 80px 20px;
+      margin: 50px 0;
+      border: 2px solid #ffcfdf;
+      box-shadow: 0 15px 25px #cf9eb3;
+    }
+    .heartfelt { font-size: 2.2rem; font-family: 'Great Vibes', cursive; color: #5e2544; text-align: center; line-height: 1.6; text-shadow: 2px 2px 0 #fdd9e6; }
+    .heartfelt i { color: #e8436e; margin: 0 8px; }
+    .signature { font-size: 2.8rem; margin-top: 20px; }
+    .guestbook {
+      background: rgba(255, 250, 240, 0.5);
+      backdrop-filter: blur(5px);
+      border-radius: 50px 20px 50px 20px;
+      padding: 30px 25px;
+      box-shadow: 0 20px 30px #b4819b;
+      border: 2px solid #ffe2ed;
+    }
+    .guestbook h2 { font-size: 3rem; margin-bottom: 20px; display: flex; align-items: center; gap: 15px; color: #772e57; }
+    .wish-list { max-height: 280px; overflow-y: auto; padding-right: 10px; margin-bottom: 30px; }
+    .wish-item {
+      background: #ffe5f0;
+      padding: 14px 20px;
+      margin: 12px 0;
+      border-radius: 30px 10px 30px 10px;
+      border-left: 8px solid #ff7da3;
+      font-family: 'Poppins', sans-serif;
+      box-shadow: 0 5px 0 #b1627e;
+      color: #36192b;
+      font-size: 1.1rem;
+    }
+    .wish-item strong { font-family: 'Dancing Script', cursive; font-size: 1.7rem; color: #a1305b; margin-right: 10px; }
+    .guestbook-form { display: flex; flex-wrap: wrap; gap: 15px; align-items: flex-end; }
+    .form-group { flex: 2 1 200px; }
+    .form-group label { display: block; font-family: 'Dancing Script', cursive; font-size: 1.5rem; margin-bottom: 5px; color: #631f42; }
+    .form-group input, .form-group textarea {
+      width: 100%; padding: 12px 18px; border-radius: 40px;
+      border: 3px solid #ffb0c7; background: #fff9fb;
+      font-size: 1rem; outline: none; font-family: 'Poppins', sans-serif;
+    }
+    .form-group textarea { min-height: 80px; resize: vertical; }
+    .submit-btn {
+      background: #ff80a5; border: none; padding: 14px 32px;
+      border-radius: 50px; font-size: 1.5rem;
+      font-family: 'Dancing Script', cursive; font-weight: bold;
+      color: #411b2e; box-shadow: 0 7px 0 #a13e62, 0 5px 15px #c27a96;
+      cursor: pointer; transition: 0.1s; border: 2px solid #fff0fa;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .submit-btn i { font-size: 1.8rem; }
+    .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 0 #a13e62, 0 8px 20px #c27a96; background: #ff99b9; }
+    footer { text-align: center; margin-top: 40px; font-family: 'Dancing Script', cursive; font-size: 1.5rem; color: #4e263b; }
+    @media (max-width: 600px) {
+      .wrapper { padding: 15px; }
+      .hero h1 { font-size: 2.8rem; }
+      .heart-shaped { width: 90px; height: 80px; }
+      .heart-shaped::before, .heart-shaped::after { width: 90px; height: 80px; }
+      .heart-shaped::before { top: -40px; }
+      .heart-shaped::after { left: 40px; }
+      .heart-shaped .btn-text { top: 22px; left: 4px; font-size: 0.9rem; width: 80px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-hearts">
+    <i class="fas fa-heart" style="left: 5%; animation-delay: 0s;"></i>
+    <i class="fas fa-heart" style="left: 15%; animation-delay: 2.5s; font-size: 2.2rem;"></i>
+    <i class="fas fa-heart" style="left: 28%; animation-delay: 5s;"></i>
+    <i class="fas fa-heart" style="left: 42%; animation-delay: 1.8s; font-size: 2.8rem;"></i>
+    <i class="fas fa-heart" style="left: 55%; animation-delay: 4s;"></i>
+    <i class="fas fa-heart" style="left: 70%; animation-delay: 0.7s; font-size: 2rem;"></i>
+    <i class="fas fa-heart" style="left: 82%; animation-delay: 3.2s;"></i>
+    <i class="fas fa-heart" style="left: 92%; animation-delay: 6s;"></i>
+  </div>
+
+  <div class="wrapper">
+    <div class="hero">
+      <h1>🎂 Happy Birthday, <br>EMMA 🎉</h1>
+      <div class="sub">✨ love & sparkles ✨</div>
+      <div class="heart-btn-wrapper">
+        <div class="heart-shaped" id="confettiHeartBtn">
+          <span class="btn-text">🎈 Throw Confetti 🎈</span>
+        </div>
+      </div>
+      <button class="heart-icon-btn" id="extraConfettiBtn"><i class="fas fa-heart"></i> More Love & Confetti</button>
+      <p style="margin-top: 25px; font-family: 'Dancing Script'; font-size: 1.8rem; color:#a1305b;"><i class="fas fa-cake-candles"></i>  You're a gift to the world  <i class="fas fa-cake-candles"></i></p>
+    </div>
+
+    <!-- PHOTO GALLERY -->
+    <div class="gallery-section">
+      <h2 class="gallery-title"><i class="fas fa-camera-retro"></i> Emma's Sparkle Gallery <i class="fas fa-camera-retro"></i></h2>
+      <div class="photo-grid" id="photoGallery"></div>
+    </div>
+
+    <!-- HEARTFELT MESSAGE -->
+    <div class="message-section">
+      <div class="heartfelt">
+        <i class="fas fa-heart"></i> Dearest Emma, <br>
+        On your special day, I want you to know how much joy and light you bring. <br>
+        May your year be filled with laughter, roses, and all the love you deserve. <br>
+        Keep shining, beautiful soul. <br>
+        <span class="signature">— With all my love, forever <i class="fas fa-heart"></i></span>
+      </div>
+    </div>
+
+    <!-- GUESTBOOK -->
+    <div class="guestbook">
+      <h2><i class="fas fa-book-open"></i> Birthday Wishes Guestbook <i class="fas fa-pen-fancy"></i></h2>
+      <!-- Wake up button for Render -->
+      <div style="text-align: right; margin-bottom: 10px;">
+        <button class="heart-icon-btn" id="wakeServerBtn" style="padding: 6px 16px; font-size: 1rem;"><i class="fas fa-cloud-upload-alt"></i> Wake Up Server</button>
+      </div>
+      <div class="wish-list" id="wishContainer"></div>
+      <div class="guestbook-form">
+        <div class="form-group">
+          <label><i class="fas fa-user"></i> Your name</label>
+          <input type="text" id="guestName" placeholder="e.g., Rose" maxlength="30">
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-message"></i> Your wish</label>
+          <textarea id="guestMessage" placeholder="Write a sweet message..."></textarea>
+        </div>
+        <button class="submit-btn" id="submitWishBtn"><i class="fas fa-heart"></i> Send wish</button>
+      </div>
+      <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.8; text-align: right; font-style: italic;">
+        <i class="fas fa-database"></i> Connected to em.db on Render
+      </p>
+    </div>
+
+    <footer>
+      <p>🌸 Made with roses & lavender dreams 🌸</p>
+    </footer>
+  </div>
+
+  <script>
+    (function(){
+      "use strict";
+
+      // ---------- CONFETTI ----------
+      function shootConfetti(particleCount = 180, spread = 80) {
+        confetti({ particleCount, spread, origin: { y: 0.6 }, colors: ['#ff99cc', '#ffb3c6', '#e6b3ff', '#ffc0cb', '#d9b8d9', '#fbb6ce'] });
+        confetti({ particleCount: particleCount/2, spread: spread+30, origin: { y: 0.5, x: 0.3 }, colors: ['#ffb3ba', '#ffdfbf', '#bae1ff', '#baffc9'] });
+        confetti({ particleCount: particleCount/2, spread: spread+30, origin: { y: 0.5, x: 0.7 }, colors: ['#f7c6d7', '#d4b8d9', '#ffb7c5'] });
+      }
+      window.addEventListener('load', () => { shootConfetti(200, 90); setTimeout(() => shootConfetti(150, 100), 200); setTimeout(() => shootConfetti(120, 70), 400); });
+      setTimeout(() => shootConfetti(80, 60), 800);
+      document.getElementById('confettiHeartBtn').addEventListener('click', () => { shootConfetti(250, 100); confetti({ particleCount: 100, spread: 70, origin: { y: 0.7, x: 0.5 }, colors: ['#ffb3c6', '#ff99bb'] }); });
+      document.getElementById('extraConfettiBtn').addEventListener('click', () => { shootConfetti(300, 110); for (let i=0;i<3;i++) setTimeout(() => confetti({particleCount: 60, spread: 80, origin: { y: 0.5 }}), i*120); });
+
+      // ---------- PHOTO GALLERY ----------
+      const userImages = [
+        { url: "images/e.jpeg", caption: "✨ Radiant ✨" },
+        { url: "images/e1.jpeg", caption: "🌸 Sweet soul 🌸" },
+        { url: "images/e2.jpeg", caption: "💖 Lovely 💖" },
+        { url: "images/e3.jpeg", caption: "🌹 Rose quartz 🌹" },
+        { url: "images/e4.jpeg", caption: "🦋 Free spirit 🦋" },
+        { url: "images/e5.jpeg", caption: "🎀 Darling 🎀" },
+        { url: "images/e6.jpeg", caption: "💫 Glowing 💫" },
+        { url: "images/e7.jpeg", caption: "👑 Queen 👑" }
+      ];
+      const galleryEl = document.getElementById('photoGallery');
+      function buildGallery() {
+        galleryEl.innerHTML = '';
+        userImages.forEach((imgData, idx) => {
+          const card = document.createElement('div');
+          card.className = 'photo-card';
+          const img = document.createElement('img');
+          img.src = imgData.url;
+          img.alt = `Emma photo ${idx+1}`;
+          img.loading = 'lazy';
+          img.onerror = function() { this.src = 'https://picsum.photos/400/400?random=' + idx; };
+          const cap = document.createElement('div');
+          cap.className = 'caption';
+          cap.textContent = imgData.caption || '✨';
+          card.appendChild(img);
+          card.appendChild(cap);
+          galleryEl.appendChild(card);
+        });
+      }
+      buildGallery();
+
+      // ---------- GUESTBOOK WITH ROBUST BACKEND CONNECTION ----------
+      (() => {
+        const API_BASE_URL = 'https://guestbook-api-0dgm.onrender.com';
+        const STORAGE_KEY = 'emma_birthday_wishes';
+
+        const wishContainer = document.getElementById('wishContainer');
+        const nameInput = document.getElementById('guestName');
+        const msgInput = document.getElementById('guestMessage');
+        const submitBtn = document.getElementById('submitWishBtn');
+        const wakeBtn = document.getElementById('wakeServerBtn');
+
+        let wishes = [];
+
+        function escapeHTML(str) {
+          return String(str).replace(/[&<>"]/g, m => ({
+            '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'
+          })[m]);
+        }
+
+        function renderWishes() {
+          wishContainer.innerHTML = '';
+          if (!wishes.length) {
+            const empty = document.createElement('div');
+            empty.className = 'wish-item';
+            empty.style.background = '#f8e1ec';
+            empty.style.borderLeftColor = '#d47da0';
+            empty.innerHTML = `<strong>✨</strong> Be the first to leave a birthday wish! <strong>✨</strong>`;
+            wishContainer.appendChild(empty);
+            return;
+          }
+          // Newest first
+          [...wishes].reverse().forEach(w => {
+            const div = document.createElement('div');
+            div.className = 'wish-item';
+            div.innerHTML = `<strong>${escapeHTML(w.name)}</strong> — ${escapeHTML(w.message)}`;
+            wishContainer.appendChild(div);
+          });
+        }
+
+        function saveToLocalStorage() {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(wishes));
+        }
+
+        function loadFromLocalStorage() {
+          const stored = localStorage.getItem(STORAGE_KEY);
+          wishes = stored ? JSON.parse(stored) : [];
+          renderWishes();
+        }
+
+        // Fetch with timeout (Render free tier may take time to wake)
+        async function fetchWithTimeout(url, options = {}, timeout = 10000) {
+          const controller = new AbortController();
+          const id = setTimeout(() => controller.abort(), timeout);
+          const response = await fetch(url, { ...options, signal: controller.signal });
+          clearTimeout(id);
+          return response;
+        }
+
+        async function loadWishesFromBackend() {
+          try {
+            console.log('🌐 Fetching wishes...');
+            const response = await fetchWithTimeout(`${API_BASE_URL}/wishes`);
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            const data = await response.json();
+            console.log('✅ Wishes loaded:', data);
+            wishes = Array.isArray(data) ? data : [];
+            renderWishes();
+            saveToLocalStorage();
+          } catch (err) {
+            console.warn('⚠️ Backend unavailable, using localStorage:', err);
+            loadFromLocalStorage();
+          }
+        }
+
+        async function addWishToBackend(name, message) {
+          try {
+            console.log('📤 Sending wish...');
+            const response = await fetchWithTimeout(`${API_BASE_URL}/wishes`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ name, message })
+            });
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            const data = await response.json();
+            console.log('✅ Wish saved on server:', data);
+            // Add the returned wish (or fallback to submitted data)
+            wishes.push({ name: data.name || name, message: data.message || message });
+            renderWishes();
+            saveToLocalStorage();
+            return true;
+          } catch (err) {
+            console.error('❌ Backend POST failed:', err);
+            // Fallback to localStorage
+            wishes.push({ name, message });
+            renderWishes();
+            saveToLocalStorage();
+            alert('✨ Your wish was saved locally (offline mode). It will sync when the server wakes up!');
+            return true;
+          }
+        }
+
+        // Wake up the Render server
+        async function wakeUpServer() {
+          wakeBtn.disabled = true;
+          wakeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Waking...';
+          try {
+            const response = await fetchWithTimeout(`${API_BASE_URL}/wishes`, {}, 12000);
+            if (response.ok) {
+              alert('✅ Server is awake! You can now send wishes.');
+              // Reload wishes from server
+              await loadWishesFromBackend();
+            } else {
+              alert('⚠️ Server responded but with an error. Try again in a moment.');
+            }
+          } catch (err) {
+            alert('❌ Could not wake server. It may be starting up. Please wait 30 seconds and try again.');
+          } finally {
+            wakeBtn.disabled = false;
+            wakeBtn.innerHTML = '<i class="fas fa-cloud-upload-alt"></i> Wake Up Server';
+          }
+        }
+
+        // Initialize
+        loadWishesFromBackend();
+
+        wakeBtn.addEventListener('click', wakeUpServer);
+
+        submitBtn.addEventListener('click', async () => {
+          const name = nameInput.value.trim();
+          const msg = msgInput.value.trim();
+          if (!name || !msg) {
+            alert('🌸 Please enter both your name and a sweet wish! 🌸');
+            return;
+          }
+          if (name.length > 30 || msg.length > 200) {
+            alert('Keep it short & sweet (max 200 chars) 💌');
+            return;
+          }
+          
+          const success = await addWishToBackend(name, msg);
+          if (success) {
+            nameInput.value = '';
+            msgInput.value = '';
+            confetti({ particleCount: 50, spread: 45, origin: { y: 0.8 } });
+            wishContainer.scrollTop = wishContainer.scrollHeight;
+          }
+        });
+
+        msgInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            submitBtn.click();
+          }
+        });
+      })();
+    })();
+  </script>
+</body>
+</html>
